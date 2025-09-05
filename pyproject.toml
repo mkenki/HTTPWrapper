@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "httpwrapper"
-version = "0.1.0"
+version = "0.1.1"
 description = "A resilient HTTP client wrapper with retry and circuit breaker patterns"
 authors = [
     {name = "HTTPWrapper Team", email = "team@httpwrapper.com"}
@@ -52,11 +52,11 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourorg/httpwrapper"
+Homepage = "https://github.com/mkenki/HTTPWrapper"
 Documentation = "https://httpwrapper.readthedocs.io/"
-Repository = "https://github.com/yourorg/httpwrapper"
-Issues = "https://github.com/yourorg/httpwrapper/issues"
-Changelog = "https://github.com/yourorg/httpwrapper/blob/main/CHANGELOG.md"
+Repository = "https://github.com/mkenki/HTTPWrapper"
+Issues = "https://github.com/mkenki/HTTPWrapper/issues"
+Changelog = "https://github.com/mkenki/HTTPWrapper/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]

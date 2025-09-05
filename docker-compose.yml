@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  httpwrapper:
+    build: .
+    container_name: httpwrapper_app
+    ports:
+      - "8000:8000"
+      - "9090:9090"
+    environment:
+      - PYTHONPATH=/app/src
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - .:/app:ro
+      - ./benchmarks:/app/benchmarks
+    command: ["python", "-m", "pytest", "tests/", "-v", "--cov=httpwrapper", "--cov-report=html"]
+    profiles:
+      - test
+
+  httpwrapper-dev:
+    build: .
+    container_name: httpwrapper_dev
+    ports:
+      - "8000:8000"
+      - "9090:9090"
+    environment:
+      - PYTHONPATH=/app/src
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - .:/app
+    command: ["tail", "-f", "/dev/null"]
+    profiles:
+      - dev
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: httpwrapper_db
+    environment:
+      - POSTGRES_DB=httpwrapper_test
+      - POSTGRES_USER=httpwrapper
+      - POSTGRES_PASSWORD=httpwrapper_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    profiles:
+      - db
+
+volumes:
+  postgres_data:
